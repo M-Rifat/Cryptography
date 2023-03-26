@@ -1,0 +1,46 @@
+Cryptography Lab : 
+
+1.RSA (e+d) : Given> p,q,M ; p,q both prime ;p!=q
+  ----------               n=pxq ; Φ(n) = (P-1)(Q-1)   public key(e,n)
+                           d = e^-1(mod Φ(n))        private key (d,n)
+                                       
+                           ciphertext C =M^e modn
+                           plaintext P =C^d modn
+
+2.Caeser cipher (e+d) : Plaintexts' all alphabate shift with a fixed number of position
+  --------------------
+
+3.Poly alphabetic cipher (e+d) : Plaintext replace with a fixed key(letters position) and the key shifted cyclically for equal length of plaintext.
+  -----------------------------
+
+4.Playfair cipher (e+d) : 5x5 matrix = with key then unused alphabates; plaintext=split into pair of two alphabates.
+  ----------------------  """"""""""                                      """"""""" same letter=split with bogus letter.
+                          substitute=column or row or square horizontal opposite.(position)
+                          """"""""""
+
+5.Hill cipher (e) : (message split into n and matrix=nxn) ; numerical value ;  ciphertext=matrix*n digit message
+  ----------------
+
+6.ECC (affine point & sub group generation): Given, a,b,p
+  -----------------------------------------  EC=> y2 = x3 + ax + b to finite, y2 mod p = (x3+ax+b) mod p 
+
+                                             doubling,2G=(x2g,y2g)
+                                                      x2g=(3xg2+a/2yg)^2 -xg-xg      y2g=(3xg2+a/2yg)(xg-x2g)-yg
+                                             addition,3G=(x3g,y3g)
+                                                      x3g=(y2g-yg/x2g-xg)^2 -xg-x2g       y3g=(y2g-yg/x2g-xg)(xg-x3g)-yg
+                                             Now, s=                                         
+
+7.SDES (key generation) : 10bit key> p10 > split > LS1 > combine > p8 > K1
+  ----------------------                            :
+                                                    : > LS2 > combine > p8 > K2
+
+
+                         encryption : plaintext > IP8 > split >
+                                                          :
+                                                    : < 4 : 4 > EP > 8bit (xor) K1 >split > s box {r(1,4),c(2,3)} > combine (s0 & s1) > p4
+                                                    ^>------:------------------------------xor-------------------------------------------:
+                                                            :                               :
+                                                            `````````````````````````````````
+                                                                       : > swap
+                                                                                   for k2 xor then ip-1
+
